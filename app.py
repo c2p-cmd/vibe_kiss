@@ -180,6 +180,30 @@ def _(go, mo):
 
 
 @app.cell
+def _(mo):
+    pass_field = mo.ui.text(
+        kind="password", 
+        placeholder="My nickname for you",
+        label="Enter Password to Reveal the Secret Message",
+        full_width=True
+    )
+    pass_field
+    return (pass_field,)
+
+
+@app.cell
+def _(mo, pass_field):
+    msg = ""
+    _value = pass_field.value
+    if _value == 'Chinku':
+        msg = "Jaha bhi ho, jaisi bhi ho, hamesha yaad rakhna, meri ho ♥️"
+    elif len(_value) > 0:
+        msg = "Incorrect password. Try again! Hint: It's a cute nickname."
+    mo.md(msg)
+    return
+
+
+@app.cell
 def _(fig, mo):
     mo.Html(
         f"""
